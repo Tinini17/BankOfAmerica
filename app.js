@@ -564,15 +564,20 @@ function renderAll() {
   if (displayEmailEl) displayEmailEl.textContent = profile.email;
 
   // Update accounts dashboard balances
-  const chAvail = document.getElementById('home-checking-avail');
-  const chCurr = document.getElementById('home-checking-current');
-  const svAvail = document.getElementById('home-savings-avail');
-  const svCurr = document.getElementById('home-savings-current');
+  const balanceCells = document.querySelectorAll('.balance-cell');
+  const shouldHideBalances = document.body.classList.contains('balances-hidden');
+  const formatBalanceText = (value) => shouldHideBalances ? '••••••••' : formatUSD(value);
 
-  if (chAvail) chAvail.textContent = formatUSD(accounts.checking);
-  if (chCurr) chCurr.textContent = formatUSD(accounts.checking);
-  if (svAvail) svAvail.textContent = formatUSD(accounts.savings);
-  if (svCurr) svCurr.textContent = formatUSD(accounts.savings);
+  balanceCells.forEach(cell => {
+    const valueEl = cell.querySelector('.balance-value');
+    const balanceValue = Number(cell.dataset.balance || 0);
+
+    if (valueEl) {
+      valueEl.textContent = formatBalanceText(balanceValue);
+    }
+
+    cell.classList.toggle('is-hidden', shouldHideBalances);
+  });
 
   // Calculate and update checking trend display (using payroll transaction as the trend indicator)
   const payrollTx = transactions.find(t => t.category === 'payroll');
@@ -841,6 +846,20 @@ function setupEventListeners() {
         loginForm.reset();
         errMsgEl.style.display = 'none';
       });
+    });
+  }
+
+  const balanceToggleBtn = document.getElementById('btn-toggle-balances');
+  if (balanceToggleBtn) {
+    balanceToggleBtn.addEventListener('click', () => {
+      const hidden = document.body.classList.toggle('balances-hidden');
+      const eyeIcon = balanceToggleBtn.querySelector('.balance-eye-icon');
+      if (eyeIcon) {
+        eyeIcon.classList.toggle('is-closed', hidden);
+      }
+      balanceToggleBtn.setAttribute('aria-pressed', hidden ? 'true' : 'false');
+      balanceToggleBtn.title = hidden ? 'Show balances' : 'Hide balances';
+      renderAll();
     });
   }
 

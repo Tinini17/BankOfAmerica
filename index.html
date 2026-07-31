@@ -155,6 +155,11 @@
               <div class="portal-card-desktop">
                 <div class="card-header-desktop">
                   <h3>Personal Accounts</h3>
+                  <button type="button" class="balance-visibility-btn" id="btn-toggle-balances" aria-pressed="false" title="Hide balances">
+                    <svg class="balance-eye-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M12 5c-5.3 0-9.8 3.3-11 8 1.2 4.7 5.7 8 11 8s9.8-3.3 11-8c-1.2-4.7-5.7-8-11-8Zm0 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"/>
+                    </svg>
+                  </button>
                 </div>
                 <div class="accounts-table-wrapper">
                   <table class="portal-table">
@@ -173,16 +178,28 @@
                             <span id="display-trend-amount">+ $248,920.50</span> this month
                           </div>
                         </td>
-                        <td class="text-right bold-amount" id="home-checking-avail">$900,193.29</td>
-                        <td class="text-right bold-amount" id="home-checking-current">$900,193.29</td>
+                        <td class="text-right bold-amount balance-cell" id="home-checking-avail" data-balance="900193.29">
+                          <span class="balance-ghost-slot"></span>
+                          <span class="balance-value">$900,193.29</span>
+                        </td>
+                        <td class="text-right bold-amount balance-cell" id="home-checking-current" data-balance="900193.29">
+                          <span class="balance-ghost-slot"></span>
+                          <span class="balance-value">$900,193.29</span>
+                        </td>
                       </tr>
                       <tr class="account-row-link" data-account="savings">
                         <td>
                           <div class="acc-name">Savings •••• <span id="home-last4-savings">5821</span></div>
                           <div class="acc-trend-text">Standard Savings Plan</div>
                         </td>
-                        <td class="text-right bold-amount" id="home-savings-avail">$270,200.63</td>
-                        <td class="text-right bold-amount" id="home-savings-current">$270,200.63</td>
+                        <td class="text-right bold-amount balance-cell" id="home-savings-avail" data-balance="270200.63">
+                          <span class="balance-ghost-slot"></span>
+                          <span class="balance-value">$270,200.63</span>
+                        </td>
+                        <td class="text-right bold-amount balance-cell" id="home-savings-current" data-balance="270200.63">
+                          <span class="balance-ghost-slot"></span>
+                          <span class="balance-value">$270,200.63</span>
+                        </td>
                       </tr>
                     </tbody>
                   </table>

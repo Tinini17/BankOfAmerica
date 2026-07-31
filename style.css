@@ -681,6 +681,10 @@ body.logged-in #portal-container {
   background-color: var(--boa-gray-light);
   border-bottom: 1px solid var(--border-color);
   padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .card-header-desktop h3 {
@@ -689,6 +693,7 @@ body.logged-in #portal-container {
   color: var(--text-primary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin: 0;
 }
 
 /* Portal Tables */
@@ -758,10 +763,59 @@ body.dark-theme .account-row-link:hover {
 }
 
 .bold-amount {
-  font-weight: 700;
+  font-weight: 800;
   font-family: var(--font-accent);
-  font-size: 15px;
+  font-size: 20px;
   color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.balance-cell {
+  white-space: nowrap;
+}
+
+.balance-ghost-slot {
+  display: inline-block;
+  width: 34px;
+  height: 1px;
+  margin-right: 8px;
+}
+
+.balance-cell.is-hidden .balance-value {
+  filter: blur(8px);
+  color: transparent;
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+}
+
+.balance-visibility-btn {
+  border: 1px solid var(--border-color);
+  background: var(--boa-gray-light);
+  color: var(--text-primary);
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.balance-eye-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.balance-eye-icon.is-closed {
+  transform: scale(1, 0.82);
+  transform-origin: center;
+}
+
+.balance-visibility-btn:hover {
+  background: var(--boa-blue-light);
+  color: var(--boa-blue-dark);
 }
 
 /* Quick Actions Cards */
