@@ -923,6 +923,11 @@ body.dark-theme .account-row-link:hover {
     font-size: 12px;
   }
 
+  .bold-amount {
+    font-size: clamp(16px, 4.4vw, 22px);
+    line-height: 1.15;
+  }
+
   .portal-main-content {
     padding-left: 12px;
     padding-right: 12px;
