@@ -71,12 +71,12 @@
             
             <div class="form-group-login">
               <label for="login-username">Online ID or Email</label>
-              <input type="text" id="login-username" placeholder="Enter Online ID or Email" required autocomplete="username">
+              <input type="text" id="login-username" placeholder="Enter Online ID or Email" required autocomplete="off">
             </div>
 
             <div class="form-group-login">
               <label for="login-password">Passcode</label>
-              <input type="password" id="login-password" placeholder="Enter Passcode" required autocomplete="current-password">
+              <input type="password" id="login-password" placeholder="Enter Passcode" required autocomplete="off">
             </div>
 
             <div class="login-options">
@@ -151,15 +151,29 @@
                 <p>Here is a summary of your accounts as of today.</p>
               </div>
 
-              <!-- Accounts table -->
-              <div class="portal-card-desktop">
-                <div class="card-header-desktop">
-                  <h3>Personal Accounts</h3>
+              <!-- Checking Account Balance Card -->
+              <div class="checking-balance-card">
+                <div class="checking-card-header">
+                  <h3>BOA CLASSIC CHECKING</h3>
                   <button type="button" class="balance-visibility-btn" id="btn-toggle-balances" aria-pressed="false" title="Hide balances">
                     <svg class="balance-eye-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <path d="M12 5c-5.3 0-9.8 3.3-11 8 1.2 4.7 5.7 8 11 8s9.8-3.3 11-8c-1.2-4.7-5.7-8-11-8Zm0 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"/>
                     </svg>
                   </button>
+                </div>
+                <div class="checking-card-content">
+                  <div class="balance-label">Available Balance</div>
+                  <div class="balance-amount" id="checking-card-balance" data-balance="900193.29">
+                    <span class="balance-value-card">$900,193.29</span>
+                  </div>
+                  <a href="#" class="view-balance-details" onclick="switchView('transactions'); return false;">View Balance Details</a>
+                </div>
+              </div>
+
+              <!-- Accounts table -->
+              <div class="portal-card-desktop">
+                <div class="card-header-desktop">
+                  <h3>Personal Accounts</h3>
                 </div>
                 <div class="accounts-table-wrapper">
                   <table class="portal-table">

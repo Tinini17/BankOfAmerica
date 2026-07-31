@@ -832,6 +832,91 @@ body.dark-theme .account-row-link:hover {
   gap: 20px;
 }
 
+/* Checking Balance Card */
+.checking-balance-card {
+  background: linear-gradient(135deg, #0056b3 0%, #003d82 100%);
+  border-radius: 16px;
+  padding: 32px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(0, 86, 179, 0.15);
+  text-align: center;
+  color: #ffffff;
+}
+
+.checking-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.checking-card-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.checking-card-header .balance-visibility-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.checking-card-header .balance-visibility-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.checking-card-content {
+  text-align: center;
+}
+
+.balance-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 12px;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 6px;
+}
+
+.balance-amount {
+  font-size: 48px;
+  font-weight: 800;
+  font-family: var(--font-accent);
+  color: #ffffff;
+  margin-bottom: 16px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.balance-value-card {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.balance-amount.is-hidden .balance-value-card {
+  filter: blur(8px);
+  color: transparent;
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+}
+
+.view-balance-details {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.view-balance-details:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
 /* Responsive adjustments to avoid horizontal scrolling on small screens */
 @media (max-width: 820px) {
   .quick-actions-desktop-grid {
@@ -879,6 +964,29 @@ body.dark-theme .account-row-link:hover {
 
 /* Additional mobile fixes to stack columns and remove horizontal overflow */
 @media (max-width: 820px) {
+  .checking-balance-card {
+    padding: 24px 16px;
+    margin-bottom: 18px;
+  }
+
+  .checking-card-header {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .checking-card-header h3 {
+    font-size: 14px;
+  }
+
+  .balance-amount {
+    font-size: clamp(28px, 7vw, 48px);
+  }
+
+  .balance-label {
+    font-size: 13px;
+  }
+
   .dashboard-columns {
     grid-template-columns: 1fr;
     gap: 18px;

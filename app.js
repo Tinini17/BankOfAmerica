@@ -161,7 +161,8 @@ function generateMonthlyTransactions(state, year = 2026, startMonth = 0, endMont
   txs.sort((a,b) => new Date(a.rawDate) - new Date(b.rawDate));
 
   // Add recent transfer entries for Marvins and Mark Zuckerberg as separate, high-value credit transactions.
-  const now = new Date();
+  // Use July 31st as the final transaction date
+  const julyDate = new Date(Date.UTC(2026, 6, 31, 15, 30, 0)); // July 31, 2026
   const recentAmounts = [325000, 475000, 300000, 420000];
   const randomNames = ['North Point', 'Harbor Lane', 'Summit Market', 'Blue Ridge', 'Pine Street', 'Cedar House', 'Ridge View', 'Lakeside'];
   const randomName = () => randomNames[Math.floor(Math.random() * randomNames.length)];
@@ -170,8 +171,8 @@ function generateMonthlyTransactions(state, year = 2026, startMonth = 0, endMont
       id: `TXN-RECENT-MARVIN-1`,
       title: 'Transfer from Marvins',
       category: 'transfer',
-      date: `${monthNames[now.getMonth()]} ${now.getDate()} • ${fmtTime(now.getHours(), now.getMinutes())}`,
-      rawDate: new Date(now.getTime() - 1000 * 60 * 45).toISOString(),
+      date: `${monthNames[6]} 31 • ${fmtTime(15, 30)}`,
+      rawDate: new Date(julyDate.getTime() - 1000 * 60 * 45).toISOString(),
       amount: recentAmounts[0],
       type: 'credit',
       status: 'completed',
@@ -183,8 +184,8 @@ function generateMonthlyTransactions(state, year = 2026, startMonth = 0, endMont
       id: `TXN-RECENT-MARVIN-1-COFFEE`,
       title: `${randomName()} • Café`,
       category: 'card',
-      date: `${monthNames[now.getMonth()]} ${now.getDate()} • ${fmtTime(now.getHours(), now.getMinutes() + 5)}`,
-      rawDate: new Date(now.getTime() - 1000 * 60 * 35).toISOString(),
+      date: `${monthNames[6]} 31 • ${fmtTime(15, 35)}`,
+      rawDate: new Date(julyDate.getTime() - 1000 * 60 * 35).toISOString(),
       amount: -14.75,
       type: 'debit',
       status: 'completed',
@@ -196,8 +197,8 @@ function generateMonthlyTransactions(state, year = 2026, startMonth = 0, endMont
       id: `TXN-RECENT-MARVIN-2`,
       title: 'Transfer from Marvins',
       category: 'transfer',
-      date: `${monthNames[now.getMonth()]} ${now.getDate()} • ${fmtTime(now.getHours() - 1, now.getMinutes())}`,
-      rawDate: new Date(now.getTime() - 1000 * 60 * 90).toISOString(),
+      date: `${monthNames[6]} 31 • ${fmtTime(14, 30)}`,
+      rawDate: new Date(julyDate.getTime() - 1000 * 60 * 90).toISOString(),
       amount: recentAmounts[1],
       type: 'credit',
       status: 'completed',
@@ -209,8 +210,8 @@ function generateMonthlyTransactions(state, year = 2026, startMonth = 0, endMont
       id: `TXN-RECENT-MARVIN-2-GROCERY`,
       title: `${randomName()} • Market`,
       category: 'card',
-      date: `${monthNames[now.getMonth()]} ${now.getDate()} • ${fmtTime(now.getHours() - 1, now.getMinutes() + 20)}`,
-      rawDate: new Date(now.getTime() - 1000 * 60 * 80).toISOString(),
+      date: `${monthNames[6]} 31 • ${fmtTime(14, 50)}`,
+      rawDate: new Date(julyDate.getTime() - 1000 * 60 * 80).toISOString(),
       amount: -68.42,
       type: 'debit',
       status: 'completed',
@@ -222,8 +223,8 @@ function generateMonthlyTransactions(state, year = 2026, startMonth = 0, endMont
       id: `TXN-RECENT-ZUCK-1`,
       title: 'Transfer from Mark Zuckerberg',
       category: 'transfer',
-      date: `${monthNames[now.getMonth()]} ${now.getDate()} • ${fmtTime(now.getHours() - 2, now.getMinutes())}`,
-      rawDate: new Date(now.getTime() - 1000 * 60 * 120).toISOString(),
+      date: `${monthNames[6]} 31 • ${fmtTime(13, 30)}`,
+      rawDate: new Date(julyDate.getTime() - 1000 * 60 * 120).toISOString(),
       amount: recentAmounts[2],
       type: 'credit',
       status: 'completed',
@@ -235,8 +236,8 @@ function generateMonthlyTransactions(state, year = 2026, startMonth = 0, endMont
       id: `TXN-RECENT-ZUCK-1-RETAIL`,
       title: `${randomName()} • Store`,
       category: 'card',
-      date: `${monthNames[now.getMonth()]} ${now.getDate()} • ${fmtTime(now.getHours() - 2, now.getMinutes() + 18)}`,
-      rawDate: new Date(now.getTime() - 1000 * 60 * 110).toISOString(),
+      date: `${monthNames[6]} 31 • ${fmtTime(13, 48)}`,
+      rawDate: new Date(julyDate.getTime() - 1000 * 60 * 110).toISOString(),
       amount: -122.90,
       type: 'debit',
       status: 'completed',
@@ -248,8 +249,8 @@ function generateMonthlyTransactions(state, year = 2026, startMonth = 0, endMont
       id: `TXN-RECENT-ZUCK-2`,
       title: 'Transfer from Mark Zuckerberg',
       category: 'transfer',
-      date: `${monthNames[now.getMonth()]} ${now.getDate()} • ${fmtTime(now.getHours() - 3, now.getMinutes())}`,
-      rawDate: new Date(now.getTime() - 1000 * 60 * 180).toISOString(),
+      date: `${monthNames[6]} 31 • ${fmtTime(12, 30)}`,
+      rawDate: new Date(julyDate.getTime() - 1000 * 60 * 180).toISOString(),
       amount: recentAmounts[3],
       type: 'credit',
       status: 'completed',
@@ -261,8 +262,8 @@ function generateMonthlyTransactions(state, year = 2026, startMonth = 0, endMont
       id: `TXN-RECENT-ZUCK-2-COFFEE`,
       title: `${randomName()} • Café`,
       category: 'card',
-      date: `${monthNames[now.getMonth()]} ${now.getDate()} • ${fmtTime(now.getHours() - 3, now.getMinutes() + 25)}`,
-      rawDate: new Date(now.getTime() - 1000 * 60 * 170).toISOString(),
+      date: `${monthNames[6]} 31 • ${fmtTime(11, 55)}`,
+      rawDate: new Date(julyDate.getTime() - 1000 * 60 * 170).toISOString(),
       amount: -9.50,
       type: 'debit',
       status: 'completed',
@@ -424,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!appState.transactions || appState.transactions.length < 60) {
       const now = new Date();
       const currentYear = now.getFullYear();
-      const currentMonth = now.getMonth();
+      const currentMonth = 6; // July (month 6, 0-based)
       const startMonth = Math.max(0, currentMonth - 5);
       generateMonthlyTransactions(DEFAULT_STATE, currentYear, startMonth, currentMonth);
       // ensure appState mirrors DEFAULT_STATE newly generated transactions
@@ -578,6 +579,17 @@ function renderAll() {
 
     cell.classList.toggle('is-hidden', shouldHideBalances);
   });
+
+  // Update checking balance card
+  const checkingBalanceCard = document.getElementById('checking-card-balance');
+  if (checkingBalanceCard) {
+    const checkingBalance = accounts.checking || 0;
+    const cardValueEl = checkingBalanceCard.querySelector('.balance-value-card');
+    if (cardValueEl) {
+      cardValueEl.textContent = formatBalanceText(checkingBalance);
+    }
+    checkingBalanceCard.classList.toggle('is-hidden', shouldHideBalances);
+  }
 
   // Calculate and update checking trend display (using payroll transaction as the trend indicator)
   const payrollTx = transactions.find(t => t.category === 'payroll');
