@@ -765,7 +765,7 @@ body.dark-theme .account-row-link:hover {
 .bold-amount {
   font-weight: 800;
   font-family: var(--font-accent);
-  font-size: 20px;
+  font-size: 24px;
   color: var(--text-primary);
   letter-spacing: -0.02em;
 }
@@ -924,8 +924,16 @@ body.dark-theme .account-row-link:hover {
   }
 
   .bold-amount {
-    font-size: clamp(16px, 4.4vw, 22px);
-    line-height: 1.15;
+    font-size: clamp(20px, 6.5vw, 36px);
+    line-height: 1.05;
+  }
+
+  /* Ensure the inner balance span scales with the bold amount and never wraps */
+  .balance-value {
+    display: inline-block;
+    font-size: inherit;
+    vertical-align: middle;
+    white-space: nowrap;
   }
 
   .portal-main-content {
