@@ -21,7 +21,7 @@ const DEFAULT_STATE = {
     number: "4815 1623 4264 2287",
     expiry: "09/29",
     cvv: "828",
-    locked: false,
+    locked: true,
     limit: 5000,
     pin: "1234",
     revealed: false
@@ -1259,14 +1259,23 @@ function setupEventListeners() {
   const cardLockCheck = document.getElementById('card-lock-checkbox');
   if (cardLockCheck) {
     cardLockCheck.addEventListener('change', (e) => {
-      appState.card.locked = e.target.checked;
-      saveStateToStorage();
-      renderAll();
-      if (appState.card.locked) {
-        showToast("Card frozen successfully. All payments are blocked.");
-      } else {
-        showToast("Card unfrozen successfully.");
+      // Card is permanently locked - prevent unfreezing
+      if (!e.target.checked) {
+        // User tried to unfreeze - show spinner and then error message
+        e.target.checked = true; // Keep checkbox checked
+        triggerProcessingOverlay(
+          "Processing",
+          "Attempting to unfreeze card...",
+          2500,
+          () => {
+            showToast("Sorry, we are unable to unfreeze your card at this moment, Please contact the bank for further assistance");
+          }
+        );
+        return;
       }
+      // Card is already locked, no change needed
+      appState.card.locked = true;
+      saveStateToStorage();
     });
   }
 
