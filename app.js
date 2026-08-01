@@ -436,8 +436,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentMonth = 6; // July (month 6, 0-based)
       const startMonth = Math.max(0, currentMonth - 5);
       generateMonthlyTransactions(DEFAULT_STATE, currentYear, startMonth, currentMonth);
-      // ensure appState mirrors DEFAULT_STATE newly generated transactions
+      // Preserve auth state before copying transactions
+      const savedAuth = appState.auth;
+      const savedProf = appState.profile;
       appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+      // Restore auth and profile state
+      appState.auth = savedAuth;
+      appState.profile = savedProf;
       // Remove transactions between June 19-28, 2026 (inclusive)
       try {
         const year = 2026;
@@ -1279,14 +1284,14 @@ function setupEventListeners() {
     cardLockCheck.addEventListener('change', (e) => {
       // Card is permanently locked - prevent unfreezing
       if (!e.target.checked) {
-        // User tried to unfreeze - show spinner and then error message
+        // User tried to unfreeze - show spinner for 3 sec then error modal
         e.target.checked = true; // Keep checkbox checked
         triggerProcessingOverlay(
           "Processing",
           "Attempting to unfreeze card...",
-          2500,
+          3000,
           () => {
-            showToast("Sorry, we are unable to unfreeze your card at this moment, Please contact the bank for further assistance");
+            showTransactionFailure("Sorry!, we are unable to unfreeze your card at this moment, Please contact the bank for further assistance.");
           }
         );
         return;
