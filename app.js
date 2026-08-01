@@ -339,6 +339,14 @@ function saveStateToStorage() {
 function loadStateFromStorage() {
   // Loading from localStorage disabled per user request — always initialize fresh in-memory state
   appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  
+  // Restore login state from sessionStorage (persists across page reloads in current session)
+  const isLoggedIn = sessionStorage.getItem('boa_logged_in');
+  const username = sessionStorage.getItem('boa_username');
+  if (isLoggedIn === 'true') {
+    appState.auth.loggedIn = true;
+    appState.auth.username = username || '';
+  }
 }
 
 // Firestore sync utilities (debounced saves + init)
@@ -848,6 +856,11 @@ function setupEventListeners() {
         appState.auth.loggedIn = true;
         // Store only the online id/email used to sign in
         appState.auth.username = usernameInput;
+        
+        // Store login state in sessionStorage to persist across page reloads
+        sessionStorage.setItem('boa_logged_in', 'true');
+        sessionStorage.setItem('boa_username', usernameInput);
+        
         saveStateToStorage();
         applyAuthState();
         renderAll();
@@ -886,6 +899,11 @@ function setupEventListeners() {
 
         appState.auth.loggedIn = false;
         appState.auth.username = "";
+        
+        // Clear login state from sessionStorage
+        sessionStorage.removeItem('boa_logged_in');
+        sessionStorage.removeItem('boa_username');
+        
         saveStateToStorage();
         applyAuthState();
         showToast("Logged out successfully.");
