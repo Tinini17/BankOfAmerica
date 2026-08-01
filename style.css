@@ -967,6 +967,8 @@ body.dark-theme .account-row-link:hover {
   .checking-balance-card {
     padding: 24px 16px;
     margin-bottom: 18px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .checking-card-header {
@@ -1120,6 +1122,21 @@ body.dark-theme .account-row-link:hover {
 }
 
 @media (max-width: 420px) {
+  .checking-balance-card {
+    padding: 20px 12px;
+    margin-bottom: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .balance-amount {
+    font-size: clamp(24px, 6.5vw, 36px);
+  }
+
+  .balance-label {
+    font-size: 12px;
+  }
+
   .portal-table td, .portal-table th { padding: 12px 10px; }
 }
 
